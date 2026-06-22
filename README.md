@@ -20,7 +20,7 @@ The same module pair lifts both **SAM (2D → 3D)** and **SAM2 (2D+T → 3D+T)**
 
 ## Code Release
 
-**The code, pretrained checkpoints, configuration files, and reproducibility scripts will be released here upon paper acceptance.** Please watch / star this repository to be notified.
+**The code, pretrained checkpoints, configuration files, and reproducibility scripts will be released here soon.** Please watch / star this repository to be notified.
 
 Planned contents:
 - Training and evaluation scripts for SAM and SAM2 backbones
