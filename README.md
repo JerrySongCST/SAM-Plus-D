@@ -30,19 +30,6 @@ Planned contents:
 - Ablation scripts (routing-mechanism, shift ratio, experts, rank)
 
 ---
-
-## Citation
-
-If you find this work useful, please consider citing (BibTeX will be updated upon publication):
-
-```bibtex
-@inproceedings{samplusd2026,
-  title     = {SAM+D: Parameter-Efficient Dimensional Lifting of SAM-Family Models
-               via Depth-Routed LoRA and Depth Shifting},
-  author    = {Anonymous Authors},
-  booktitle = {European Conference on Computer Vision (ECCV)},
-  year      = {2026},
-}
 ```
 
 ---
