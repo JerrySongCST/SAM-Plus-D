@@ -22,13 +22,6 @@ The same module pair lifts both **SAM (2D → 3D)** and **SAM2 (2D+T → 3D+T)**
 
 **The code, pretrained checkpoints, configuration files, and reproducibility scripts will be released here soon.** Please watch / star this repository to be notified.
 
-Planned contents:
-- Training and evaluation scripts for SAM and SAM2 backbones
-- DRLoRA and DSM module implementations
-- Configurations for all reported datasets
-- Pretrained checkpoints for the main results table
-- Ablation scripts (routing-mechanism, shift ratio, experts, rank)
-
 ---
 ```
 
