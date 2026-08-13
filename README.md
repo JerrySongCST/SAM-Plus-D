@@ -65,22 +65,21 @@ The four best-per-dataset checkpoints reported above are released on Google Driv
 
 **[Download all 4 checkpoints (Google Drive folder)](https://drive.google.com/drive/folders/1SFk4lwFewtzShYcP_qSPJvLqKK9EG6DR?usp=sharing)**
 
-| Dataset | Decoder | File in the folder | Test Dice |
-|---|---|---|---|
-| KiTS | SAM + LoRA | `kits_best.pth.tar`     | **0.8474** |
-| LiTS | SAM + LoRA | `lits_best.pth.tar`     | **0.6333** |
-| Colon | Conv3D    | `colon_best.pth.tar`    | **0.6639** |
-| Pancreas | SAM + LoRA | `pancreas_best.pth.tar` | **0.5968** |
+| Dataset  | Decoder    | File in the folder      |
+|---|---|---|
+| KiTS     | SAM + LoRA | `kits_best.pth.tar`     |
+| LiTS     | SAM + LoRA | `lits_best.pth.tar`     |
+| Colon    | Conv3D     | `colon_best.pth.tar`    |
+| Pancreas | SAM + LoRA | `pancreas_best.pth.tar` |
 
-Once downloaded, place each checkpoint under `snapshots/<dataset>/<decoder>/` and rename it to `best.pth.tar` so that the eval scripts can find it:
+Pass any of the downloaded files directly via `--checkpoint <path>`:
 
+```bash
+python test_point.py --data kits --decoder_type sam \
+  --checkpoint /path/to/kits_best.pth.tar   ...
 ```
-snapshots/
-├── kits/sam/best.pth.tar          # was kits_best.pth.tar
-├── lits/sam/best.pth.tar          # was lits_best.pth.tar
-├── colon/conv3d/best.pth.tar      # was colon_best.pth.tar
-└── pancreas/sam/best.pth.tar      # was pancreas_best.pth.tar
-```
+
+(No rename or particular directory placement is required. `--checkpoint` also accepts the shortcut strings `last` / `best`, in which case it loads `<snapshot_path>/<name>.pth.tar` — useful when resuming training runs of your own.)
 
 ---
 
@@ -184,10 +183,10 @@ python test_point.py \
   --data kits \
   --data_prefix /path/to/kits/kist_update/data \
   --sam_checkpoint ../ckpt/sam_vit_b_01ec64.pth \
-  --snapshot_path snapshots \
   --decoder_type sam --num_points 1 \
   --num_crops 5 --jitter 15 --min_size 100 \
-  --routing_mode depth --checkpoint best
+  --routing_mode depth \
+  --checkpoint /path/to/kits_best.pth.tar
 ```
 
 For sliding-window baselines, use `test.py` with the same arguments.

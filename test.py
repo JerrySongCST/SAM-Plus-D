@@ -59,7 +59,11 @@ def main():
     parser.add_argument("-bs", "--batch_size", default=1, type=int)
     parser.add_argument("--num_classes", default=2, type=int)
     parser.add_argument("--num_worker", default=6, type=int)
-    parser.add_argument("--checkpoint", default="last", type=str)
+    parser.add_argument(
+        "--checkpoint", default="last", type=str,
+        help="Either 'last' / 'best' (loads <snapshot_path>/<name>.pth.tar) or an "
+             "explicit path to a .pth.tar file.",
+    )
     parser.add_argument("-tolerance", default=5, type=int)
     # DRLoRA-specific args
     parser.add_argument("--num_slices", default=32, type=int)
@@ -76,10 +80,6 @@ def main():
     parser.add_argument("--overlap", default=0.5, type=float, help="Sliding window overlap ratio")
 
     args = parser.parse_args()
-    if args.checkpoint == "last":
-        file = "last.pth.tar"
-    else:
-        file = "best.pth.tar"
     device = args.device
     if args.rand_crop_size == 0:
         if args.data in ["colon", "pancreas", "lits", "kits", "nc_liver"]:
@@ -121,8 +121,11 @@ def main():
     )
     del sam
 
-    # Load trained weights
-    ckpt_path = os.path.join(args.snapshot_path, file)
+    # Load trained weights: --checkpoint can be a shortcut ("last"/"best") or a path
+    if args.checkpoint in ("last", "best"):
+        ckpt_path = os.path.join(args.snapshot_path, f"{args.checkpoint}.pth.tar")
+    else:
+        ckpt_path = args.checkpoint
     ckpt = torch.load(ckpt_path, map_location="cpu", weights_only=False)
     model.load_state_dict(migrate_legacy_state_dict(ckpt["state_dict"]))
     model.to(device)

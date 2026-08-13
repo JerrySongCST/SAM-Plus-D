@@ -93,7 +93,11 @@ def main():
     parser.add_argument("--rand_crop_size", default=0, nargs='+', type=int)
     parser.add_argument("--device", default="cuda:0", type=str)
     parser.add_argument("--num_classes", default=2, type=int)
-    parser.add_argument("--checkpoint", default="last", type=str)
+    parser.add_argument(
+        "--checkpoint", default="last", type=str,
+        help="Either 'last' / 'best' (loads <snapshot_path>/<name>.pth.tar) or an "
+             "explicit path to a .pth.tar file.",
+    )
     parser.add_argument("-tolerance", default=5, type=int)
     # DRLoRA-specific args
     parser.add_argument("--num_slices", default=32, type=int)
@@ -120,7 +124,6 @@ def main():
     )
 
     args = parser.parse_args()
-    file = "last.pth.tar" if args.checkpoint == "last" else "best.pth.tar"
     device = args.device
 
     if args.rand_crop_size == 0:
@@ -168,7 +171,11 @@ def main():
     )
     del sam
 
-    ckpt_path = os.path.join(args.snapshot_path, file)
+    # --checkpoint can be a shortcut ("last"/"best") or a full path to a .pth.tar
+    if args.checkpoint in ("last", "best"):
+        ckpt_path = os.path.join(args.snapshot_path, f"{args.checkpoint}.pth.tar")
+    else:
+        ckpt_path = args.checkpoint
     ckpt = torch.load(ckpt_path, map_location="cpu", weights_only=False)
     model.load_state_dict(migrate_legacy_state_dict(ckpt["state_dict"]))
     model.to(device)
