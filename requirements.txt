@@ -1,0 +1,19 @@
+# Core (tested with PyTorch 2.10 + CUDA 12.8 on RTX 5090; earlier versions likely work)
+torch>=2.1
+torchvision>=0.16
+
+# SAM backbone (frozen 2D encoder)
+git+https://github.com/facebookresearch/segment-anything.git
+
+# Medical imaging IO + augmentations
+monai>=1.3
+nibabel>=5.0
+numpy>=1.24
+scipy>=1.10
+
+# Surface-Dice metric
+surface-distance @ git+https://github.com/deepmind/surface-distance.git
+
+# Experiment tracking + plotting
+wandb>=0.16
+matplotlib>=3.7
