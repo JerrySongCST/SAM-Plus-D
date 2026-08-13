@@ -115,7 +115,7 @@ SAM-Plus-D/
 Tested on Ubuntu 24.04, Python 3.10, PyTorch 2.10 + CUDA 12.8, NVIDIA RTX 5090.
 
 ```bash
-git clone git@github.com:JerrySongCST/SAM-Plus-D.git
+git clone https://github.com/JerrySongCST/SAM-Plus-D.git
 cd SAM-Plus-D
 conda create -n samd python=3.10 -y
 conda activate samd
