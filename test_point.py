@@ -87,7 +87,7 @@ def get_crop_slices(center, roi_size, vol_shape):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data", default=None, type=str, choices=["kits", "pancreas", "lits", "colon", "nc_liver"])
+    parser.add_argument("--data", default=None, type=str, choices=["kits", "pancreas", "lits", "colon"])
     parser.add_argument("--snapshot_path", default="", type=str)
     parser.add_argument("--data_prefix", default="", type=str)
     parser.add_argument("--rand_crop_size", default=0, nargs='+', type=int)
@@ -127,7 +127,7 @@ def main():
     device = args.device
 
     if args.rand_crop_size == 0:
-        if args.data in ["colon", "pancreas", "lits", "kits", "nc_liver"]:
+        if args.data in ["colon", "pancreas", "lits", "kits"]:
             args.rand_crop_size = (128, 128, 128)
     else:
         if len(args.rand_crop_size) == 1:

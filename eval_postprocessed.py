@@ -38,7 +38,7 @@ def compute_nsd(pred, label, spacing, tolerance=5):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--pred_dir", required=True, type=str)
-    parser.add_argument("--data", default="kits", type=str, choices=["kits", "pancreas", "lits", "colon", "nc_liver"])
+    parser.add_argument("--data", default="kits", type=str, choices=["kits", "pancreas", "lits", "colon"])
     parser.add_argument("--data_prefix", default="", type=str)
     parser.add_argument("--rand_crop_size", default=(128, 128, 128), nargs='+', type=int)
     parser.add_argument("-tolerance", default=5, type=int)

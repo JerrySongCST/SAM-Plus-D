@@ -16,7 +16,7 @@ from monai.inferers import sliding_window_inference
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--data", default=None, type=str, choices=["kits", "pancreas", "lits", "colon", "nc_liver"]
+        "--data", default=None, type=str, choices=["kits", "pancreas", "lits", "colon"]
     )
     parser.add_argument(
         "--snapshot_path",
@@ -54,7 +54,7 @@ def main():
         file = "best.pth.tar"
     device = args.device
     if args.rand_crop_size == 0:
-        if args.data in ["colon", "pancreas", "lits", "kits", "nc_liver"]:
+        if args.data in ["colon", "pancreas", "lits", "kits"]:
             args.rand_crop_size = (256, 256, 256)
     else:
         if len(args.rand_crop_size) == 1:

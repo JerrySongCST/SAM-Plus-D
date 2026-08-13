@@ -56,26 +56,11 @@ class ColonVolumeDataset(BaseVolumeDataset):
         self.target_class = 1
 
 
-class NCLiverVolumeDataset(BaseVolumeDataset):
-    # Private non-contrast CT liver-tumor dataset (123 patients, label 2 = tumor).
-    # Stats computed from foreground (label>0) of all 123 NC volumes.
-    def _set_dataset_stat(self):
-        # nii load shape (X, Y, Z); spatial_index=[2,1,0] -> (D, H, W)
-        self.intensity_range = (0, 88)
-        self.target_spacing = (1, 1, 1)
-        self.global_mean = 54.4842
-        self.global_std = 14.6129
-        self.spatial_index = [2, 1, 0]
-        self.do_dummy_2D = True  # 5 mm slice spacing vs 0.68 mm in-plane
-        self.target_class = 2
-
-
 DATASET_DICT = {
     "kits": KiTSVolumeDataset,
     "lits": LiTSVolumeDataset,
     "pancreas": PancreasVolumeDataset,
     "colon": ColonVolumeDataset,
-    "nc_liver": NCLiverVolumeDataset,
 }
 
 

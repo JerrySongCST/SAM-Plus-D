@@ -16,7 +16,7 @@ The Segment Anything Model family (SAM, SAM2) provides powerful 2D / 2D+T segmen
 - **DRLoRA** (Depth-Routed Mixture of LoRA Experts) — a per-slice mixture of low-rank adapters whose gates are conditioned on the slice position *z* alone. DRLoRA supplies an anatomical depth prior that the frozen backbone cannot recover, is inherently load-balanced (no auxiliary loss needed), and uses a router roughly twenty times smaller than content-routed mixtures of LoRA experts.
 - **DSM** (Depth Shift Module) — a parameter-free, zero-MAC channel-shift primitive along the depth axis that propagates inter-slice information at a cost of roughly 1.7 % of a single ViT-B block's forward latency on an NVIDIA RTX 5090.
 
-On four public 3D medical segmentation benchmarks (KiTS, LiTS, Pancreas, Colon) and a private non-contrast CT liver-tumor cohort, SAM+D matches or exceeds 3D-conv adapter baselines and recent mixture-of-LoRA approaches (MoLoRA, MoLE, MixLoRA), with **fewer than 3 % of the backbone parameters trained**.
+On four public 3D medical segmentation benchmarks (KiTS, LiTS, Pancreas, Colon), SAM+D matches or exceeds 3D-conv adapter baselines and recent mixture-of-LoRA approaches (MoLoRA, MoLE, MixLoRA), with **fewer than 3 % of the backbone parameters trained**.
 
 ---
 
@@ -96,7 +96,7 @@ SAM-Plus-D/
 │   ├── image_encoder.py      # SAM ViT-B encoder helpers
 │   ├── mask_decoder.py       # SAM mask decoder helpers (LoRA-injectable)
 │   └── prompt_encoder.py     # SAM prompt encoder helpers
-├── dataset/                  # KiTS / LiTS / Pancreas / Colon / private-NC-liver loaders
+├── dataset/                  # KiTS / LiTS / Pancreas / Colon loaders
 ├── utils/                    # logging + checkpoint helpers
 ├── train.py                  # single-stage training (any decoder, any routing mode)
 ├── train_auto.py             # auto-prompted training variant
@@ -138,7 +138,6 @@ Expected on-disk layout:
 - **KiTS**: `<data_prefix>/kist_update/data/{volume-xxx.nii, segmentation-xxx.nii}` + `split.pkl`
 - **LiTS**: `<data_prefix>/Task01_LITS17/Training/volume-<id>/{image.nii.gz, segmentation.nii.gz}` + `split.pkl`
 - **Pancreas / Colon**: MSD Task07 / Task10 layout + `split.pkl`
-- **NC liver-tumor** (private): `<data_prefix>/{NC,ART,PV}/{volume-xxx.nii, segmentation-xxx.nii}` + `split.pkl` (five-fold, stratified by lesion type)
 
 Each `split.pkl` is a Python-pickled list of 5 folds, each a dict with keys `train / val / test`, mapping case IDs to `[<volume-path>, <segmentation-path>]`. See `dataset/datasets.py` for the exact loading convention and per-dataset normalization statistics.
 

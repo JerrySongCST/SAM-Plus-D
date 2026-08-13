@@ -86,7 +86,7 @@ def cleanup_distributed():
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--data", default=None, type=str, choices=["kits", "pancreas", "lits", "colon", "nc_liver"]
+        "--data", default=None, type=str, choices=["kits", "pancreas", "lits", "colon"]
     )
     parser.add_argument("--snapshot_path", default="", type=str)
     parser.add_argument("--data_prefix", default="", type=str)
@@ -122,7 +122,7 @@ def main():
     parser.add_argument(
         "--routing_mode", default="depth", type=str,
         choices=["depth", "content", "content_top1", "content_top2", "single"],
-        help="DRLoRA routing: depth=DRLoRA(ours), content=DRLoRA, content_top1=MixLoRA, content_top2=MoLE, single=baseline LoRA",
+        help="Routing mode: depth=DRLoRA(ours), content=MoLoRA, content_top1=MixLoRA, content_top2=MoLE, single=baseline LoRA",
     )
     parser.add_argument("--aux_loss_weight", default=0.01, type=float, help="Weight for routing aux loss (top-k modes)")
     # gradient accumulation & clipping
@@ -138,7 +138,7 @@ def main():
     is_main = rank == 0
 
     if args.rand_crop_size == 0:
-        if args.data in ["pancreas", "lits", "colon", "kits", "nc_liver"]:
+        if args.data in ["pancreas", "lits", "colon", "kits"]:
             args.rand_crop_size = (128, 128, 128)
     else:
         if len(args.rand_crop_size) == 1:

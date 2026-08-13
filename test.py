@@ -48,7 +48,7 @@ def compute_nsd(pred, label, spacing, tolerance=5):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--data", default=None, type=str, choices=["kits", "pancreas", "lits", "colon", "nc_liver"]
+        "--data", default=None, type=str, choices=["kits", "pancreas", "lits", "colon"]
     )
     parser.add_argument("--snapshot_path", default="", type=str)
     parser.add_argument("--data_prefix", default="", type=str)
@@ -82,7 +82,7 @@ def main():
     args = parser.parse_args()
     device = args.device
     if args.rand_crop_size == 0:
-        if args.data in ["colon", "pancreas", "lits", "kits", "nc_liver"]:
+        if args.data in ["colon", "pancreas", "lits", "kits"]:
             args.rand_crop_size = (128, 128, 128)
     else:
         if len(args.rand_crop_size) == 1:
