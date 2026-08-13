@@ -61,9 +61,10 @@ The paper also introduces **SAM2+D**, which is *the same method* — DRLoRA + DS
 
 ## Pretrained Checkpoints
 
-The four best-per-dataset checkpoints reported above are released on Google Drive:
+The four best-per-dataset checkpoints reported above are released on two mirrors — use whichever is faster from your region:
 
-**[Download all 4 checkpoints (Google Drive folder)](https://drive.google.com/drive/folders/1SFk4lwFewtzShYcP_qSPJvLqKK9EG6DR?usp=sharing)**
+- **[Google Drive folder](https://drive.google.com/drive/folders/1SFk4lwFewtzShYcP_qSPJvLqKK9EG6DR?usp=sharing)** — 4 files, ~1.5 GB
+- **[Baidu Netdisk / 百度网盘](https://pan.baidu.com/s/1zjBrwzPUS0Ki2mn2ghgsHw)** — extract code / 提取码: `duxa`
 
 | Dataset  | Decoder    | File in the folder      |
 |---|---|---|
