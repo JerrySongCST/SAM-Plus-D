@@ -67,19 +67,19 @@ The four best-per-dataset checkpoints reported above are released on Google Driv
 
 | Dataset | Decoder | File in the folder | Test Dice |
 |---|---|---|---|
-| KiTS | SAM + LoRA | `kits_sam_best.pth.tar`     | **0.8474** |
-| LiTS | SAM + LoRA | `lits_sam_best.pth.tar`     | **0.6333** |
-| Colon | Conv3D    | `colon_conv3d_best.pth.tar` | **0.6639** |
-| Pancreas | SAM + LoRA | `pancreas_sam_best.pth.tar` | **0.5968** |
+| KiTS | SAM + LoRA | `kits_best.pth.tar`     | **0.8474** |
+| LiTS | SAM + LoRA | `lits_best.pth.tar`     | **0.6333** |
+| Colon | Conv3D    | `colon_best.pth.tar`    | **0.6639** |
+| Pancreas | SAM + LoRA | `pancreas_best.pth.tar` | **0.5968** |
 
-Once downloaded, place each checkpoint under `snapshots/<dataset>/<decoder>/best.pth.tar` so that the eval scripts can find it:
+Once downloaded, place each checkpoint under `snapshots/<dataset>/<decoder>/` and rename it to `best.pth.tar` so that the eval scripts can find it:
 
 ```
 snapshots/
-├── kits/sam/best.pth.tar
-├── lits/sam/best.pth.tar
-├── colon/conv3d/best.pth.tar
-└── pancreas/sam/best.pth.tar
+├── kits/sam/best.pth.tar          # was kits_best.pth.tar
+├── lits/sam/best.pth.tar          # was lits_best.pth.tar
+├── colon/conv3d/best.pth.tar      # was colon_best.pth.tar
+└── pancreas/sam/best.pth.tar      # was pancreas_best.pth.tar
 ```
 
 ---
