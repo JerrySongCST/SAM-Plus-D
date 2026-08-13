@@ -3,7 +3,6 @@ from typing import Any, Callable, Dict, Hashable, List, Mapping, Optional, Seque
 from monai.config import IndexSelection, KeysCollection, SequenceStr
 from monai.transforms import (
     Compose,
-    AddChanneld,
     RandCropByPosNegLabeld,
     CropForegroundd,
     SpatialPadd,

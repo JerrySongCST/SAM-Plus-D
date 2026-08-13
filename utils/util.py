@@ -1,10 +1,6 @@
-from scipy import ndimage
-import numpy as np
-from medpy import metric
 import logging
 import os
 import time
-import torch
 
 
 def setup_logger(logger_name, root, level=logging.INFO, screen=False, tofile=False):
